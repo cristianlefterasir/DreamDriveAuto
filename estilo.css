@@ -1,0 +1,49 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+}
+.bg-f1-red {
+    background-color: #e51d00;
+}
+.bg-f1-dark {
+    background-color: #121212;
+}
+.text-f1-yellow {
+    color: #ffd700;
+}
+.btn-f1 {
+    background-color: #e51d00;
+    color: #f0f0f0;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+}
+.btn-f1:hover {
+    background-color: #ff3300;
+    transform: scale(1.05);
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+.tab-button.active {
+    border-bottom: 3px solid #e51d00;
+}
+.section-separator {
+    border-top: 2px dashed rgba(255, 255, 255, 0.2);
+}
+.loader {
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-top: 4px solid #e51d00;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
