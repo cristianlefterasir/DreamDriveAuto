@@ -3,325 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DDA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>DDA - Drive Dream Auto</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
-<body class="bg-gray-900 text-gray-100 flex flex-col min-h-screen">
+<body>
+    <!-- Header -->
+    <header>
+        <h1>DDA - Drive Dream Auto</h1>
+        <nav>
+            <ul>
+                <li><a href="#principal">Principal</a></li>
+                <li><a href="#vehiculos">Vehículos</a></li>
+                <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <!-- Chatbot flotante -->
-<div id="chatbox" class="fixed bottom-4 right-4 w-80 h-96 bg-gray-800 rounded-lg shadow-lg flex flex-col">
-  <div class="bg-f1-yellow text-white font-bold text-center py-2 rounded-t-lg">Chat de ayuda</div>
-  <div id="messages" class="flex-1 p-2 overflow-y-auto text-sm"></div>
-  <div id="input-area" class="flex border-t border-gray-600">
-    <input type="text" id="userInput" class="flex-1 p-2 bg-gray-700 text-white focus:outline-none" placeholder="Escribe tu pregunta...">
-    <button onclick="sendMessage()" class="px-4 bg-f1-red text-white font-bold">Enviar</button>
-  </div>
-</div>
+    <!-- Principal -->
+<section id="principal">
+    <h2>Reserva tu experiencia</h2>
 
-<script>
-  const responses = {
-    "horario": "Nuestro horario es de 9:00 a 20:00 todos los días.",
-    "temporada": "Estamos abiertos todo el año excepto en diciembre.",
-    "precio": "El precio del alquiler depende del coche, empieza desde 200€/hora.",
-    "coche": "Tenemos deportivos, karts y turismos de calle preparados para circuito.",
-    "tiempo": "El día que elijas hará un tiempo perfecto para correr 😉",
-    "contacto": "Puedes llamarnos al 123-456-789 o escribirnos a info@circuito.com"
-  };
+    <div class="reserva">
+        <!-- Contenedor del calendario y selección de tiempo/vehículos -->
+        <div class="calendario">
+            <label for="tiempo">Tiempo de reserva (horas):</label>
+            <select id="tiempo" name="tiempo">
+                <option value="1">1 hora</option>
+                <option value="2">2 horas</option>
+                <option value="3">3 horas</option>
+                <option value="4">4 horas</option>
+                <option value="5">5 horas</option>
+            </select>
 
-  function sendMessage() {
-    const input = document.getElementById("userInput");
-    const msg = input.value.trim().toLowerCase();
-    if (!msg) return;
+            <label for="vehiculo">Vehículo:</label>
+            <select id="vehiculo" name="vehiculo">
+                <option value="tesla">Tesla Model S Plaid</option>
+                <option value="porsche">Porsche Taycan Turbo</option>
+                <option value="audi">Audi e-tron GT</option>
+                <option value="bmw">BMW i4 M50</option>
+                <option value="mercedes">Mercedes EQS AMG</option>
+            </select>
 
-    addMessage(msg, "text-blue-400 text-right");
+            <label for="cantidad">Cantidad de vehículos:</label>
+            <select id="cantidad" name="cantidad">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
 
-    let response = "Lo siento, no entiendo tu pregunta. Prueba con 'horario', 'precio', 'coche'...";
-    for (let key in responses) {
-      if (msg.includes(key)) {
-        response = responses[key];
-        break;
-      }
-    }
+            <label for="fecha">Selecciona fecha:</label>
+            <input type="date" id="fecha" name="fecha">
+        </div>
 
-    setTimeout(() => addMessage(response, "text-green-400 text-left"), 500);
-    input.value = "";
-  }
-
-  function addMessage(text, style) {
-    const messages = document.getElementById("messages");
-    const div = document.createElement("div");
-    div.className = `my-1 ${style}`;
-    div.textContent = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-  }
-</script>
-
-
-
-    <!--Termina el chat bot...........................................................-->
-    <div id="app" class="flex-1 flex flex-col items-center p-4">
-
-        <!-- Header and Tabs -->
-        <header class="w-full max-w-5xl rounded-lg p-6 mb-8 flex justify-between items-center bg-gray-800 shadow-xl">
-            <h1 class="text-4xl font-extrabold text-f1-yellow tracking-widest">Drive Dream Auto</h1>
-            <nav class="flex space-x-4 sm:space-x-8">
-                <button class="tab-button p-2 sm:p-4 text-center text-lg font-semibold uppercase hover:text-f1-yellow transition duration-300 active" data-tab="alquiler">Alquiler de Coches</button>
-                <button class="tab-button p-2 sm:p-4 text-center text-lg font-semibold uppercase hover:text-f1-yellow transition duration-300" data-tab="coches">Nuestros Coches</button>
-                <button class="tab-button p-2 sm:p-4 text-center text-lg font-semibold uppercase hover:text-f1-yellow transition duration-300" data-tab="circuito">Información del Circuito</button>
-                <button class="tab-button p-2 sm:p-4 text-center text-lg font-semibold uppercase hover:text-f1-yellow transition duration-300" data-tab="contacto">Contacto</button>
-            </nav>
-        </header>
-
-        <!-- Main Content Area -->
-        <main class="w-full max-w-5xl bg-gray-800 rounded-lg p-6 shadow-xl">
-            <!-- Rental Tab Content -->
-            <div id="alquiler" class="tab-content active">
-                <h2 class="text-3xl font-bold mb-6 text-center text-f1-yellow">Conduce tus sueños!</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Car Selection and Time -->
-                    <div class="bg-gray-700 p-6 rounded-lg shadow-inner">
-                        <label for="car-select" class="block text-lg font-semibold mb-2">Selecciona un coche:</label>
-                        <select id="car-select" class="w-full p-3 rounded-lg bg-gray-600 border-2 border-gray-500 mb-4 focus:outline-none focus:ring-2 focus:ring-f1-red">
-                            <option value="Model S Plaid">Tesla Model S Plaid</option>
-                            <option value="Taycan Turbo S">Porsche Taycan Turbo S</option>
-                            <option value="e-tron GT RS">Audi e-tron GT RS</option>
-                        </select>
-                        <label for="time-select" class="block text-lg font-semibold mb-2">Duración (horas):</label>
-                        <select id="time-select" class="w-full p-3 rounded-lg bg-gray-600 border-2 border-gray-500 mb-4 focus:outline-none focus:ring-2 focus:ring-f1-red">
-                            <option value="1">1 hora</option>
-                            <option value="2">2 horas</option>
-                            <option value="3">3 horas</option>
-                            <option value="4">4 horas</option>
-                            <option value="5">5 horas (Promo: ¡1 hora gratis!)</option>
-                        </select>
-                        <div class="mt-4 text-center">
-                            <h3 class="text-xl font-bold">Precio Total: <span id="total-price" class="text-f1-yellow text-2xl font-black">€200</span></h3>
-                            <button id="rent-button" class="mt-6 w-full btn-f1 rounded-lg py-3 shadow-lg">Reservar Ahora</button>
-                        </div>
-                    </div>
-
-                    <!-- Bring Your Own Car Promo -->
-                    <div class="bg-gray-700 p-6 rounded-lg border-2 border-f1-red shadow-inner flex flex-col justify-center items-center text-center">
-                        <h3 class="text-2xl font-bold text-f1-yellow mb-2">Trae tu Propio Coche</h3>
-                        <p class="text-lg">¡Vive la emoción al máximo!</p>
-                        <p class="text-3xl font-black my-4 text-white">€999</p>
-                        <p class="text-sm text-gray-400 mb-4">Incluye acceso a pista y servicios de box.</p>
-                        <button id="own-car-button" class="btn-f1 rounded-lg py-3 px-6 shadow-lg">¡Accede al circuito!</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cars Tab Content -->
-            <div id="coches" class="tab-content">
-                <h2 class="text-3xl font-bold mb-6 text-center text-f1-yellow">Nuestros Vehículos</h2>
-                <!-- Car details will be dynamically injected here -->
-                <div id="car-details" class="space-y-12"></div>
-            </div>
-
-            <!-- Circuit Info Tab Content -->
-            <div id="circuito" class="tab-content">
-                <h2 class="text-3xl font-bold mb-6 text-center text-f1-yellow">Información del Circuito</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-gray-700 p-6 rounded-lg shadow-inner">
-                        <h3 class="text-2xl font-bold mb-4">El Trazado</h3>
-                        <p class="text-gray-300">
-                            Nuestro circuito, inspirado en la legendaria pista de Imola, combina rectas de alta velocidad con una secuencia de curvas técnicas que pondrán a prueba tus habilidades de pilotaje. Es un trazado dinámico y desafiante, ideal para experimentar el máximo rendimiento de nuestros coches eléctricos.
-                        </p>
-                        <ul class="list-disc list-inside mt-4 text-gray-300">
-                            <li>Longitud: 4.9 km</li>
-                            <li>Curvas: 18</li>
-                            <li>Recta más larga: 1.2 km</li>
-                        </ul>
-                    </div>
-                    <div class="bg-gray-700 p-6 rounded-lg shadow-inner">
-                        <h3 class="text-2xl font-bold mb-4">Seguridad y Normas</h3>
-                        <p class="text-gray-300">
-                            La seguridad es nuestra máxima prioridad. Antes de cada sesión, se requiere una sesión informativa obligatoria de 15 minutos.
-                        </p>
-                        <ul class="list-disc list-inside mt-4 text-gray-300">
-                            <li>Uso de casco y cinturón de seguridad obligatorio.</li>
-                            <li>Respetar las banderas de señalización.</li>
-                            <li>No adelantar en curvas cerradas.</li>
-                            <li>Seguir las indicaciones del personal de pista en todo momento.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Contact Tab Content -->
-            <div id="contacto" class="tab-content">
-                <h2 class="text-3xl font-bold mb-6 text-center text-f1-yellow">Contacto y Peticiones Especiales</h2>
-                <div class="bg-gray-700 p-6 rounded-lg shadow-inner max-w-lg mx-auto">
-                    <form id="contact-form" class="space-y-4">
-                        <div>
-                            <label for="name" class="block text-lg font-semibold mb-2">Nombre Completo</label>
-                            <input type="text" id="name" class="w-full p-3 rounded-lg bg-gray-600 border-2 border-gray-500 focus:outline-none focus:ring-2 focus:ring-f1-red" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block text-lg font-semibold mb-2">Correo Electrónico</label>
-                            <input type="email" id="email" class="w-full p-3 rounded-lg bg-gray-600 border-2 border-gray-500 focus:outline-none focus:ring-2 focus:ring-f1-red" required>
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-lg font-semibold mb-2">Asunto</label>
-                            <select id="subject" class="w-full p-3 rounded-lg bg-gray-600 border-2 border-gray-500 focus:outline-none focus:ring-2 focus:ring-f1-red" required>
-                                <option value="">Seleccione...</option>
-                                <option value="Petición Especial">Petición Especial</option>
-                                <option value="Comunicación de Problemas">Comunicación de Problemas</option>
-                                <option value="Otras Consultas">Otras Consultas</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-lg font-semibold mb-2">Mensaje</label>
-                            <textarea id="message" rows="5" class="w-full p-3 rounded-lg bg-gray-600 border-2 border-gray-500 focus:outline-none focus:ring-2 focus:ring-f1-red" required></textarea>
-                        </div>
-                        <button type="submit" class="w-full btn-f1 py-3 rounded-lg shadow-lg">Enviar Mensaje</button>
-                    </form>
-                </div>
-            </div>
-        </main>
-
-        <!-- Notification Modal -->
-        <div id="modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 hidden">
-            <div class="bg-gray-800 rounded-lg p-6 max-w-sm w-full text-center border-2 border-f1-red">
-                <p id="modal-message" class="text-xl font-semibold mb-4"></p>
-                <button id="modal-close-btn" class="btn-f1 py-2 px-6 rounded-lg">Cerrar</button>
-            </div>
+        <!-- Contenedor del cálculo de precio -->
+        <div class="calculo-precio">
+            <p id="total">Total: 0 €</p>
         </div>
     </div>
+</section>
 
+
+    <!-- Vehículos -->
+    <section id="vehiculos">
+        <h2>Nuestra flota</h2>
+        <div class="carrusel-container">
+            
+            <div class="carrusel">
+                <article>
+                    <h3>Tesla Model S Plaid</h3>
+                    <img src="img/tesla.jpg" alt="Tesla Model S Plaid">
+                    <p>Velocidad máxima: 322 km/h. 0-100 en 2.1s. Autonomía: 628 km.</p>
+                </article>
+                <article>
+                    <h3>Porsche Taycan Turbo</h3>
+                    <img src="img/porsche.jpg" alt="Porsche Taycan Turbo">
+                    <p>Velocidad máxima: 260 km/h. 0-100 en 3.2s. Autonomía: 450 km.</p>
+                </article>
+                <article>
+                    <h3>Audi e-tron GT</h3>
+                    <img src="img/audi.jpg" alt="Audi e-tron GT">
+                    <p>Velocidad máxima: 245 km/h. 0-100 en 3.9s. Autonomía: 488 km.</p>
+                </article>
+                <article>
+                    <h3>BMW i4 M50</h3>
+                    <img src="img/bmw.jpg" alt="BMW i4 M50">
+                    <p>Velocidad máxima: 225 km/h. 0-100 en 3.8s. Autonomía: 510 km.</p>
+                </article>
+                <article>
+                    <h3>Mercedes EQS AMG</h3>
+                    <img src="img/mercedes.jpg" alt="Mercedes EQS AMG">
+                    <p>Velocidad máxima: 250 km/h. 0-100 en 3.4s. Autonomía: 580 km.</p>
+                </article>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Sobre nosotros -->
+<section id="sobre-nosotros">
+    <h2>Sobre nosotros</h2>
+
+    <div class="descripcion-empresa">
+        <p>
+            Drive Dream Auto nace con la misión de ofrecer experiencias únicas de conducción en circuito con los mejores coches eléctricos deportivos del mercado. 
+            Nos especializamos en brindar a nuestros clientes la oportunidad de sentir la potencia y el rendimiento de vehículos de alta gama, 
+            en un entorno seguro y controlado. Nuestro equipo está formado por profesionales apasionados por la automoción y la innovación tecnológica, 
+            garantizando que cada experiencia sea emocionante y segura. Desde reservas individuales hasta grupos, nos aseguramos de adaptar cada sesión a las necesidades 
+            y expectativas de nuestros clientes, ofreciendo atención personalizada y asesoramiento experto en todo momento.  
+            Además, contamos con instalaciones de primer nivel, pistas diseñadas para exprimir al máximo cada vehículo y un servicio al cliente que pone siempre 
+            la satisfacción en primer lugar. Nuestra prioridad es que cada participante viva una experiencia inolvidable, combinando adrenalina, aprendizaje y 
+            seguridad en cada vuelta al circuito. Con Drive Dream Auto, no solo conduces, sino que vives una experiencia completa, emocionante y exclusiva.
+        </p>
+    </div>
+
+    <h3>Normas de seguridad</h3>
+    <div class="normas">
+        <p>1. Uso obligatorio de casco y cinturón en todo momento.</p>
+        <p>2. Seguir estrictamente las indicaciones de los monitores.</p>
+        <p>3. No superar los límites de velocidad establecidos en cada pista.</p>
+        <p>4. Prohibido adelantar en zonas no autorizadas del circuito.</p>
+        <p>5. Mantener distancia segura entre vehículos y respetar las señales de seguridad.</p>
+    </div>
+
+</section>
+
+
+    <!-- Contacto -->
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <form>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="5"></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Drive Dream Auto. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabs = document.querySelectorAll('.tab-button');
-            const contents = document.querySelectorAll('.tab-content');
-            const timeSelect = document.getElementById('time-select');
-            const totalPriceSpan = document.getElementById('total-price');
-            const carDetailsContainer = document.getElementById('car-details');
-            const contactForm = document.getElementById('contact-form');
-            const modal = document.getElementById('modal');
-            const modalMessage = document.getElementById('modal-message');
-            const modalCloseBtn = document.getElementById('modal-close-btn');
+        document.addEventListener("DOMContentLoaded", function () {
+    // Cálculo total
+    const tiempo = document.getElementById("tiempo");
+    const cantidad = document.getElementById("cantidad");
+    const fecha = document.getElementById("fecha");
+    const total = document.getElementById("total");
 
-            const cars = [
-                {
-                    name: "Tesla Model S Plaid",
-                    image: "https://placehold.co/600x400/1e1e1e/ffd700?text=TESLA+PLAID",
-                    specs: {
-                        potencia: "1,020 CV",
-                        aceleracion: "0-100 km/h en 2.1 s",
-                        autonomia: "Hasta 620 km",
-                        descripcion: "El rey de la aceleración. Con su increíble potencia y tracción total, dominará cada curva y recta del circuito."
-                    }
-                },
-                {
-                    name: "Porsche Taycan Turbo S",
-                    image: "https://placehold.co/600x400/1e1e1e/e51d00?text=PORSCHE+TAYCAN",
-                    specs: {
-                        potencia: "761 CV",
-                        aceleracion: "0-100 km/h en 2.8 s",
-                        autonomia: "Hasta 412 km",
-                        descripcion: "La elegancia y el rendimiento en un solo coche. Su manejo preciso y su frenada regenerativa lo hacen perfecto para una experiencia de conducción deportiva."
-                    }
-                },
-                {
-                    name: "Audi e-tron GT RS",
-                    image: "https://placehold.co/600x400/1e1e1e/ffffff?text=AUDI+E-TRON",
-                    specs: {
-                        potencia: "646 CV",
-                        aceleracion: "0-100 km/h en 3.3 s",
-                        autonomia: "Hasta 488 km",
-                        descripcion: "Un equilibrio perfecto entre lujo y potencia. Con su diseño aerodinámico y su respuesta instantánea, te sentirás como un piloto profesional."
-                    }
-                }
-            ];
+    function calcularTotal() {
+        let horas = parseInt(tiempo.value) || 0;
+        let numVehiculos = parseInt(cantidad.value) || 0;
 
-            // Render car details
-            function renderCarDetails() {
-                carDetailsContainer.innerHTML = cars.map(car => `
-                    <div class="bg-gray-700 p-6 rounded-lg shadow-lg">
-                        <img src="${car.image}" alt="Imagen de ${car.name}" class="w-full h-auto rounded-lg mb-4">
-                        <h3 class="text-2xl font-bold text-f1-yellow mb-2">${car.name}</h3>
-                        <div class="grid grid-cols-2 gap-4 text-sm mb-4">
-                            <p><strong>Potencia:</strong> ${car.specs.potencia}</p>
-                            <p><strong>Aceleración:</strong> ${car.specs.aceleracion}</p>
-                            <p><strong>Autonomía:</strong> ${car.specs.autonomia}</p>
-                        </div>
-                        <p class="text-gray-300">${car.specs.descripcion}</p>
-                    </div>
-                `).join('');
+        let precioHoras = horas * 100;
+        let precioVehiculos = numVehiculos * 50;
+        let suplementoFinSemana = 0;
+
+        if (fecha.value) {
+            let dia = new Date(fecha.value).getDay();
+            if (dia === 0 || dia === 6) {
+                suplementoFinSemana = 100;
             }
+        }
 
-            // Update price based on time selection
-            function updatePrice() {
-                const hours = parseInt(timeSelect.value);
-                let price = hours * 200;
-                if (hours === 5) {
-                    price = 400;
-                }
-                totalPriceSpan.textContent = `€${price}`;
-            }
+        let precioTotal = precioHoras + precioVehiculos + suplementoFinSemana;
 
-            // Switch tabs
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const targetTab = tab.getAttribute('data-tab');
+        total.innerHTML = `
+            Total: ${precioTotal} €<br>
+            (Horas: ${precioHoras} € + Vehículos: ${precioVehiculos} € + Fin de semana: ${suplementoFinSemana} €)
+        `;
 
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
+        total.classList.add("total-animado");
+        setTimeout(() => total.classList.remove("total-animado"), 500);
+    }
 
-                    contents.forEach(content => {
-                        if (content.id === targetTab) {
-                            content.classList.add('active');
-                        } else {
-                            content.classList.remove('active');
-                        }
-                    });
-                });
-            });
+    tiempo.addEventListener("change", calcularTotal);
+    cantidad.addEventListener("change", calcularTotal);
+    fecha.addEventListener("change", calcularTotal);
+    calcularTotal();
 
-            // Update price on select change
-            timeSelect.addEventListener('change', updatePrice);
+});
 
-            // Handle form submission
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const formData = new FormData(contactForm);
-                const data = Object.fromEntries(formData.entries());
-                console.log('Mensaje enviado:', data);
-                showMessageModal("¡Gracias! Tu mensaje ha sido enviado. Nos pondremos en contacto contigo pronto.");
-                contactForm.reset();
-            });
-
-            // Handle button clicks
-            document.getElementById('rent-button').addEventListener('click', () => {
-                const car = document.getElementById('car-select').value;
-                const hours = document.getElementById('time-select').value;
-                showMessageModal(`¡Reserva de ${car} por ${hours} horas exitosa!`);
-            });
-
-            document.getElementById('own-car-button').addEventListener('click', () => {
-                showMessageModal(`¡Tu promo para traer tu propio coche por 999€ ha sido reservada!`);
-            });
-
-            // Show and hide modal
-            function showMessageModal(message) {
-                modalMessage.textContent = message;
-                modal.classList.remove('hidden');
-            }
-
-            modalCloseBtn.addEventListener('click', () => {
-                modal.classList.add('hidden');
-            });
-
-            // Initial setup
-            updatePrice();
-            renderCarDetails();
-        });
     </script>
-
-
-</script>
 </body>
 </html>
