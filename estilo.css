@@ -23,11 +23,19 @@ header {
     color: white;
     padding: 1.5rem 2rem;
     text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
+
+/* Solo en pantallas grandes, el header queda fijo */
+@media (min-width: 1024px) {
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+}
+
+
 
 header h1 {
     font-size: 2rem;
@@ -371,3 +379,26 @@ footer {
         max-width: 100%;
     }
 }
+#btn-subir {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: #1565c0; /* naranja llamativo */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    display: none; /* oculto por defecto */
+}
+
+#btn-subir:hover {
+    background: #0d47a1;
+    transform: scale(1.1);
+}
+

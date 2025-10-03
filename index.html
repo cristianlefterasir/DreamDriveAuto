@@ -195,9 +195,29 @@
     cantidad.addEventListener("change", calcularTotal);
     fecha.addEventListener("change", calcularTotal);
     calcularTotal();
+    
 
+
+    // Botón subir arriba
+    const btnSubir = document.getElementById("btn-subir");
+
+    window.addEventListener("scroll", () => {
+    if (window.scrollY > 200) {
+        btnSubir.style.display = "block";
+    } else {
+        btnSubir.style.display = "none";
+    }
 });
 
+btnSubir.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+
+    });
+
     </script>
+    <button id="btn-subir" title="Subir arriba">↑</button>
+
 </body>
 </html>
