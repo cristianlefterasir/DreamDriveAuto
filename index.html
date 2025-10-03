@@ -77,27 +77,27 @@
             <div class="carrusel">
                 <article>
                     <h3>Tesla Model S Plaid</h3>
-                    <img src="img/tesla.jpg" alt="Tesla Model S Plaid">
+                    <img src="tesla.jpg" alt="Tesla Model S Plaid">
                     <p>Velocidad máxima: 322 km/h. 0-100 en 2.1s. Autonomía: 628 km.</p>
                 </article>
                 <article>
                     <h3>Porsche Taycan Turbo</h3>
-                    <img src="img/porsche.jpg" alt="Porsche Taycan Turbo">
+                    <img src="porsche.jpg" alt="Porsche Taycan Turbo">
                     <p>Velocidad máxima: 260 km/h. 0-100 en 3.2s. Autonomía: 450 km.</p>
                 </article>
                 <article>
                     <h3>Audi e-tron GT</h3>
-                    <img src="img/audi.jpg" alt="Audi e-tron GT">
+                    <img src="audi.jpg" alt="Audi e-tron GT">
                     <p>Velocidad máxima: 245 km/h. 0-100 en 3.9s. Autonomía: 488 km.</p>
                 </article>
                 <article>
                     <h3>BMW i4 M50</h3>
-                    <img src="img/bmw.jpg" alt="BMW i4 M50">
+                    <img src="bmw.jpg" alt="BMW i4 M50">
                     <p>Velocidad máxima: 225 km/h. 0-100 en 3.8s. Autonomía: 510 km.</p>
                 </article>
                 <article>
                     <h3>Mercedes EQS AMG</h3>
-                    <img src="img/mercedes.jpg" alt="Mercedes EQS AMG">
+                    <img src="mercedes.jpg" alt="Mercedes EQS AMG">
                     <p>Velocidad máxima: 250 km/h. 0-100 en 3.4s. Autonomía: 580 km.</p>
                 </article>
             </div>
@@ -137,18 +137,22 @@
     <!-- Contacto -->
     <section id="contacto">
         <h2>Contacto</h2>
-        <form>
+        <form action="https://formsubmit.co/cristian.lefter.asir@gmail.com" method="POST">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <input type="text" name="nombre" required title="Introduce tu nombre" placeholder="Introduce tu nombre">
 
             <label for="email">Correo electrónico:</label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" name="email" required title="Introduce tu correo electrónico" placeholder="Introduce tu correo electrónico">
 
             <label for="mensaje">Mensaje:</label>
-            <textarea id="mensaje" name="mensaje" rows="5"></textarea>
+            <textarea name="mensaje" rows="5" title="Introduce tu mensaje" placeholder="Escribe tu mensaje aquí"></textarea>
 
             <button type="submit">Enviar</button>
         </form>
+
+        
+</div>
+
     </section>
 
     <!-- Footer -->
@@ -159,62 +163,62 @@
     <!-- Scripts -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-    // Cálculo total
-    const tiempo = document.getElementById("tiempo");
-    const cantidad = document.getElementById("cantidad");
-    const fecha = document.getElementById("fecha");
-    const total = document.getElementById("total");
+        // Cálculo total
+        const tiempo = document.getElementById("tiempo");
+        const cantidad = document.getElementById("cantidad");
+        const fecha = document.getElementById("fecha");
+        const total = document.getElementById("total");
 
-    function calcularTotal() {
-        let horas = parseInt(tiempo.value) || 0;
-        let numVehiculos = parseInt(cantidad.value) || 0;
+        function calcularTotal() {
+            let horas = parseInt(tiempo.value) || 0;
+            let numVehiculos = parseInt(cantidad.value) || 0;
 
-        let precioHoras = horas * 100;
-        let precioVehiculos = numVehiculos * 50;
-        let suplementoFinSemana = 0;
+            let precioHoras = horas * 100;
+            let precioVehiculos = numVehiculos * 50;
+            let suplementoFinSemana = 0;
 
-        if (fecha.value) {
-            let dia = new Date(fecha.value).getDay();
-            if (dia === 0 || dia === 6) {
-                suplementoFinSemana = 100;
+            if (fecha.value) {
+                let dia = new Date(fecha.value).getDay();
+                if (dia === 0 || dia === 6) {
+                    suplementoFinSemana = 100;
+                }
             }
+
+            let precioTotal = precioHoras + precioVehiculos + suplementoFinSemana;
+
+            total.innerHTML = `
+                Total: ${precioTotal} €<br>
+                (Horas: ${precioHoras} € + Vehículos: ${precioVehiculos} € + Fin de semana: ${suplementoFinSemana} €)
+            `;
+
+            total.classList.add("total-animado");
+            setTimeout(() => total.classList.remove("total-animado"), 500);
         }
 
-        let precioTotal = precioHoras + precioVehiculos + suplementoFinSemana;
-
-        total.innerHTML = `
-            Total: ${precioTotal} €<br>
-            (Horas: ${precioHoras} € + Vehículos: ${precioVehiculos} € + Fin de semana: ${suplementoFinSemana} €)
-        `;
-
-        total.classList.add("total-animado");
-        setTimeout(() => total.classList.remove("total-animado"), 500);
-    }
-
-    tiempo.addEventListener("change", calcularTotal);
-    cantidad.addEventListener("change", calcularTotal);
-    fecha.addEventListener("change", calcularTotal);
-    calcularTotal();
-    
+        tiempo.addEventListener("change", calcularTotal);
+        cantidad.addEventListener("change", calcularTotal);
+        fecha.addEventListener("change", calcularTotal);
+        calcularTotal();
+        
 
 
-    // Botón subir arriba
-    const btnSubir = document.getElementById("btn-subir");
+        // Botón subir arriba
+        const btnSubir = document.getElementById("btn-subir");
 
-    window.addEventListener("scroll", () => {
-    if (window.scrollY > 200) {
-        btnSubir.style.display = "block";
-    } else {
-        btnSubir.style.display = "none";
-    }
-});
+        window.addEventListener("scroll", () => {
+        if (window.scrollY > 200) {
+            btnSubir.style.display = "block";
+        } else {
+            btnSubir.style.display = "none";
+        }
+        });
 
-btnSubir.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
+        btnSubir.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        });
 
 
-    });
+        });
 
     </script>
     <button id="btn-subir" title="Subir arriba">↑</button>
