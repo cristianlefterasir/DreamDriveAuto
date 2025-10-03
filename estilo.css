@@ -90,29 +90,28 @@ header nav ul li a:hover::after,
 header nav ul li a.active::after {
     width: 100%;
 }
-
 #bienvenida {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem; /* espacio debajo del video */
+    max-width: 1200px; /* Ajusta al ancho de tus otras secciones */
+    margin: 0 auto;    /* Centra la sección */
+    padding: 20px 0;   /* Opcional, para separar del contenido */
 }
 
-.video-bienvenida {
-    width: 100%;       /* ocupa todo el ancho disponible */
-    height: auto;      /* mantiene proporción */
-    max-width: 1200px; /* opcional, para no ser demasiado grande en pantallas grandes */
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    object-fit: cover; /* recorta si el alto es mayor que el contenedor */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Mantiene proporción 16:9 */
+    height: 0;
+    overflow: hidden;
 }
-@media (max-width: 768px) {
-    .video-bienvenida {
-        max-width: 100%;
-        border-radius: 0; /* opcional: quitar bordes redondeados para móviles */
-        box-shadow: none;  /* opcional: quitar sombra */
-    }
+
+.video-wrapper .video-bienvenida {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Para que el video se recorte y llene el contenedor sin deformarse */
 }
+
 
 
 /* Menú */
