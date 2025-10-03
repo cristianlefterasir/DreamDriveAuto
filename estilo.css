@@ -91,6 +91,20 @@ header nav ul li a.active::after {
     width: 100%;
 }
 
+#bienvenida {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem; /* espacio debajo del video */
+}
+
+.video-bienvenida {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px; /* opcional, bordes redondeados */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
 /* Menú */
 nav ul {
     list-style: none;
@@ -401,5 +415,4 @@ footer {
     background: #0d47a1;
     transform: scale(1.1);
 }
-
 
