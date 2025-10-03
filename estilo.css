@@ -90,28 +90,35 @@ header nav ul li a:hover::after,
 header nav ul li a.active::after {
     width: 100%;
 }
-#bienvenida {
-    max-width: 1200px; /* Ajusta al ancho de tus otras secciones */
-    margin: 0 auto;    /* Centra la sección */
-    padding: 20px 0;   /* Opcional, para separar del contenido */
-}
-
+/* Contenedor del video */
 .video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* Mantiene proporción 16:9 */
-    height: 0;
-    overflow: hidden;
+    width: 90%;          /* deja un margen lateral */
+    max-width: 800px;    /* no demasiado grande en pantallas grandes */
+    margin: 0 auto;      /* centra el video */
 }
 
-.video-wrapper .video-bienvenida {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Para que el video se recorte y llene el contenedor sin deformarse */
+/* Video principal */
+.video-bienvenida {
+    width: 100%;        /* ocupa todo el ancho del wrapper */
+    height: auto;       /* mantiene proporción */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    object-fit: cover;  /* recorta si el alto es mayor que el contenedor */
 }
 
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+    .video-wrapper {
+        width: 100%;      /* ocupa todo el ancho disponible */
+        max-width: none;  /* quita límite de ancho */
+        padding: 0 0.5rem; /* un poco de margen interno opcional */
+    }
+
+    .video-bienvenida {
+        border-radius: 0;  /* sin bordes redondeados */
+        box-shadow: none;  /* sin sombra */
+    }
+}
 
 
 /* Menú */
