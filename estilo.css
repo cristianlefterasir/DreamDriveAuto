@@ -1,0 +1,410 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fuente general y centrado */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e6ebf0; /* azul muy suave y cómodo */
+    color: #222;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0; /* transición al cargar */
+    animation: fadeIn 0.6s ease forwards;
+}
+
+/* ====== Animación de aparición ====== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Header */
+header {
+    width: 100%;
+    background: linear-gradient(90deg, #0d47a1, #1976d2);
+    color: white;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Solo en pantallas grandes, el header queda fijo */
+@media (min-width: 1024px) {
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo general del nav */
+header nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+header nav ul li a {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white; /* 🔹 cambiado: antes #333 */
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Pestaña activa */
+header nav ul li a.activo {
+    background-color: #4f46e5;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Efecto hover */
+header nav ul li a:hover {
+    background-color: #6366f1;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Subrayado animado opcional */
+header nav ul li a::after {
+    content: "";
+    display: block;
+    height: 3px;
+    background: white;
+    width: 0%;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+header nav ul li a:hover::after,
+header nav ul li a.activo::after {
+    width: 100%;
+}
+
+/* Contenedor del video */
+.video-wrapper {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.video-bienvenida {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .video-wrapper {
+        width: 100%;
+        max-width: none;
+        padding: 0 0.5rem;
+    }
+
+    .video-bienvenida {
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+/* Secciones */
+section {
+    padding: 3rem 2rem;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Sección principal reserva */
+#principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#principal label {
+    display: block;
+    margin: 0.5rem 0;
+    font-weight: 600;
+    color: #0d47a1;
+}
+
+#principal select,
+#principal input {
+    padding: 0.5rem;
+    border: 1px solid #90caf9;
+    border-radius: 6px;
+    width: 200px;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+#principal select:hover,
+#principal input:hover {
+    border-color: #1e88e5;
+    transform: scale(1.02);
+}
+
+/* Contenedor para cálculo de precio */
+#total {
+    margin-top: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #0d47a1;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #bbdefb, #90caf9);
+    display: inline-block;
+    transition: all 0.5s ease;
+}
+
+.total-animado {
+    transform: scale(1.1);
+    background: linear-gradient(90deg, #42a5f5, #1e88e5);
+    color: white;
+}
+
+/* Vehículos carrusel */
+.carrusel-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.carrusel {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 1rem 0;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carrusel::-webkit-scrollbar {
+    height: 10px;
+}
+
+.carrusel::-webkit-scrollbar-thumb {
+    background: #1976d2;
+    border-radius: 5px;
+}
+
+#vehiculos article {
+    flex: 0 0 300px;
+    scroll-snap-align: start;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#vehiculos article img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    max-height: 180px;
+}
+
+#vehiculos article:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Sobre nosotros */
+#sobre-nosotros {
+    position: relative;
+    padding: 3rem 2rem;
+    max-width: 900px;
+    width: 100%;
+    color: #222;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#sobre-nosotros::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/circuito3.png') center/cover no-repeat;
+    filter: blur(8px) brightness(0.7);
+    z-index: 0;
+}
+
+#sobre-nosotros > * {
+    position: relative;
+    z-index: 1;
+}
+
+.descripcion-empresa,
+.normas {
+    border: 2px solid #0d47a1;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    text-align: left;
+    background-color: rgba(240, 244, 248, 0.85);
+}
+
+.descripcion-empresa p,
+.normas p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+}
+
+#sobre-nosotros h3 {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid #ff9800;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #fff176, #ffb74d);
+    color: #222;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Contacto */
+form {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+form:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+form label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: #0d47a1;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 0.7rem;
+    margin-top: 0.3rem;
+    border: 1px solid #90caf9;
+    border-radius: 6px;
+    transition: border-color 0.3s ease, transform 0.2s ease;
+}
+
+form input:hover,
+form textarea:hover {
+    border-color: #1e88e5;
+    transform: scale(1.02);
+}
+
+form button {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+    background: #0d47a1;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background: #0d47a1;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+}
+
+/* Botón subir */
+#btn-subir {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    display: none;
+}
+
+#btn-subir:hover {
+    background: #0d47a1;
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    #principal select,
+    #principal input {
+        width: 100%;
+    }
+
+    #vehiculos article {
+        flex: 0 0 250px;
+    }
+
+    section {
+        padding: 2rem 1rem;
+        max-width: 100%;
+    }
+}

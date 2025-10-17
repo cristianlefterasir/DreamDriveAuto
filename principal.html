@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva tu experiencia - DDA</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header>
+    <h1>DDA - Drive Dream Auto</h1>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="principal.html" class="activo">Reserva</a></li>
+            <li><a href="vehiculos.html">Vehículos</a></li>
+            <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="principal">
+    <h2>Reserva tu experiencia</h2>
+
+    <div class="reserva">
+        <div class="calendario">
+            <label for="tiempo">Tiempo de reserva (horas):</label>
+            <select id="tiempo" name="tiempo">
+                <option value="1">1 hora</option>
+                <option value="2">2 horas</option>
+                <option value="3">3 horas</option>
+                <option value="4">4 horas</option>
+                <option value="5">5 horas</option>
+            </select>
+
+            <label for="vehiculo">Vehículo:</label>
+            <select id="vehiculo" name="vehiculo">
+                <option value="tesla">Tesla Model S Plaid</option>
+                <option value="porsche">Porsche Taycan Turbo</option>
+                <option value="audi">Audi e-tron GT</option>
+                <option value="bmw">BMW i4 M50</option>
+                <option value="mercedes">Mercedes EQS AMG</option>
+            </select>
+
+            <label for="cantidad">Cantidad de vehículos:</label>
+            <select id="cantidad" name="cantidad">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+
+            <label for="fecha">Selecciona fecha:</label>
+            <input type="date" id="fecha" name="fecha">
+        </div>
+
+        <div class="calculo-precio">
+            <p id="total">Total: 0 €</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2025 Drive Dream Auto. Todos los derechos reservados.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
